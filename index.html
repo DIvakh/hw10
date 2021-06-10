@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HW10</title>
+  </head>
+  <body>
+    <script>
+      // ====================================
+
+      const arr = [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5];
+
+      const user = [
+        { name: "Ivan", age: 21 },
+        { name: "Irina", age: 35 },
+        { name: "Vasiliy", age: 72 },
+      ];
+
+      // 1. ==== indexOf ====
+
+      function indexOf(arr, searchElement, start = 0) {
+        let result = -1;
+        for (start; start < arr.length; start++) {
+          if (searchElement === arr[start]) {
+            result = start;
+            break;
+          }
+        }
+        return result;
+      }
+
+      // === Проверка ===
+      console.log("indexOf:");
+
+      console.log(indexOf(arr, 4));
+      console.log(indexOf(arr, 4, 5));
+      console.log(indexOf(arr, 24));
+
+      // 2. ==== LastIndexOf ====
+
+      function lastIndexOf(arr, searchElement, start = arr.length) {
+        let result = -1;
+        for (start; start > 0; start--) {
+          if (searchElement === arr[start]) {
+            result = start;
+            break;
+          }
+        }
+        return result;
+      }
+
+      // === Проверка ===
+
+      console.log("lastIndexOf:");
+      console.log(lastIndexOf(arr, 5));
+      console.log(lastIndexOf(arr, 5, 7));
+      console.log(lastIndexOf(arr, 30));
+
+      //   3. ==== find ====
+
+      function find(arr, callBack) {
+        for (let item of arr) {
+          if (callBack(item)) {
+            return item;
+          }
+        }
+      }
+
+      // === Проверка ===
+
+      console.log("find:");
+
+      console.log(find(arr, (item) => item > 5));
+      console.log(find(user, (item) => item.age === 35)); // <== Работает также и с объектами
+      console.log(find(user, (item) => item.age === 44)); // <== Возвращает undefined если элемент не удовлетворяет условию ф-ции
+
+      //   4. ===== findIndex =====
+
+      function findIndex(arr, callBack) {
+        let result = -1;
+        for (let item of arr) {
+          if (callBack(item)) {
+            result = arr.indexOf(item);
+          }
+        }
+        return result;
+      }
+
+      // === Проверка ===
+
+      console.log("findIndex:");
+      console.log(findIndex(arr, (item) => item > 5));
+      console.log(findIndex(arr, (item) => item > 34)); //<== Возвращает -1 если элемент не удовлетворяет условию ф-ции
+
+      console.log(findIndex(user, (item) => item.age === 35));
+
+      //   5. ===== includes =====
+
+      function includes(arr, element, index = 0) {
+        let result = "";
+        for (index; index < arr.length; index++) {
+          result = arr[index];
+        }
+        return result === element;
+      }
+
+      // === Проверка ===
+
+      console.log("includes:");
+      console.log(includes(arr, 5));
+      console.log(includes(arr, 100));
+
+      //   6. ===== every =====
+
+      function every(arr, callBack) {
+        let result = "";
+        for (let item of arr) {
+          result = callBack(item);
+          if (!result) {
+            break;
+          }
+        }
+        return result;
+      }
+
+      // === Проверка ===
+
+      console.log("every:");
+      console.log(every(arr, (item) => item % 2 == 0));
+      console.log(every(arr, (item) => item > 0));
+      console.log(every(arr, (item) => item < 8));
+
+      //   7. ===== some =====
+
+      function some(arr, callBack) {
+        let result = "";
+        for (let item of arr) {
+          result = callBack(item);
+          if (result) {
+            break;
+          }
+        }
+        return result;
+      }
+
+      // === Проверка ===
+
+      console.log("some:");
+      console.log(some(arr, (item) => item % 2 == 0));
+      console.log(some(arr, (item) => item > 6));
+
+      // ====================================
+    </script>
+  </body>
+</html>
